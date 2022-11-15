@@ -7,7 +7,7 @@
 
 ## Actor model
 - Scambio di messaggi asincrono
-- Memoria **non** condivisa
+- Memoria **non** condivisa1
 
 ## Primo programma
 ```erlang
@@ -153,5 +153,9 @@ name(pattern21 , pattern22 , ..., pattern2 n) [when guard2 ] -> body2 ;
 ...
 name(patternk1 , patternk2 , ..., patternk n) [when guardk ] -> bodyk .
 ```
+
+Esempio:
+
+https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
 
 ## Moduli
