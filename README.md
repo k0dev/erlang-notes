@@ -169,3 +169,37 @@ Significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione
 
 ## Map, Filter, Reduce
 https://github.com/k0dev/erlang-notes/blob/2c42d3d9e40f6f1597025c93c2b0890d66596de0/code/lists_mfr.erl#L1-L15
+
+## List Comprehensions 
+[Reference](https://www.erlang.org/doc/reference_manual/expressions.html#list-comprehensions)
+
+Forniscono una notazione succinta per la generazione di elementi in una lista.
+Sintassi:
+```
+[Expr || Qualifier1,...,QualifierN]
+```
+- `Expr` è un'espressione qualsiasi
+- `Qualifier` può essere un generatore o un filtro
+
+Un generatore si scrive come `Pattern <- ListExpr`, dove `ListExpr` deve essere un'espressione che viene valutata come lista.
+
+Un filtro può essere un' espressione che deve valere true o false, oppure deve essere una *guard expression*.
+
+Le variabili nei pattern dei generatori (`Pattern`) oscurano le variabili precedentemente assegnate.
+
+Una list comprehension restituisce quindi una lista dove gli elementi sono il risultato della valutazione di `Expr` per ogni combinazione degli elementi dei generatori per i quali tutti i filtri sono `true`.
+
+```erlang
+> L1=[1,2].
+[1,2]
+> L2=["a","b"].
+["a","b"]
+> [{X,Y} || X<-L1, Y<-L2]. % per ogni combinazione ~= prodotto cartesiano
+[{1,"a"},{1,"b"},{2,"a"},{2,"b"}]
+> [X || X<-L1, Y<-L2].
+[1,1,2,2]
+> [X || X<-L1, X<-L2]. % "prevale" la X più a destra
+["a","b","a","b"]
+> [X*2 || X <- [1,2,3,4,5,6,7], X>3]. % raddoppiamo tutti gli elementi maggiori di 3
+[8,10,12,14]
+```
