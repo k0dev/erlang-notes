@@ -7,7 +7,7 @@
 
 ## Actor model
 - Scambio di messaggi asincrono
-- Memoria **non** condivisa1
+- Memoria **non** condivisa
 
 ## Primo programma
 ```erlang
