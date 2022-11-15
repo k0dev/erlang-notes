@@ -205,3 +205,4 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 ```
 Esempi:
 - [quick sort](code/list_comprehension/qsort.erl)
+- [numeri primi <= n](code/list_comprehension/primes.erl)
