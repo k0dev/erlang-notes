@@ -29,7 +29,7 @@ factorial(N) -> N * factorial(N-1).
 ## Numeri
 - E' possibile specificare la base del numero con la seguente sintassi: base#num
 - E' possibile usare la notazione scientifica
-- Si può ottenere il char code di un carattere con $
+- Si può ottenere il char code di un carattere con $char
 
 TODO: float? 
 ```erlang
