@@ -31,7 +31,7 @@ factorial(N) -> N * factorial(N-1).
 - E' possibile usare la notazione scientifica
 - Si può ottenere il char code di un carattere con $char
 
-TODO: float? 
+<!--- TODO: float -->
 ```erlang
 > 10.
 10
@@ -148,10 +148,10 @@ I binding sono creati mediante pattern matching.
 ## Funzioni
 Vengono analizzate sequenzialmente fino a che una non effettua il match. 
 ```erlang
-name(pattern11 , pattern12 , ..., pattern1 n) [when guard1 ] -> body1 ;
-name(pattern21 , pattern22 , ..., pattern2 n) [when guard2 ] -> body2 ;
+name(pattern11 , pattern12 , ..., pattern1n) [when guard1 ] -> body1;
+name(pattern21 , pattern22 , ..., pattern2n) [when guard2 ] -> body2;
 ...
-name(patternk1 , patternk2 , ..., patternk n) [when guardk ] -> bodyk .
+name(patternk1 , patternk2 , ..., patternkn) [when guardk ] -> bodyk.
 ```
 
 Esempio:
@@ -159,3 +159,13 @@ Esempio:
 https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
 
 ## Moduli
+```erlang
+-module(mio_modulo).
+-export([mia_funzione/3]).
+```
+Significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli.
+
+<!--- TODO:  guard sequence -->
+
+## Map, Filter, Reduce
+https://github.com/k0dev/erlang-notes/blob/2c42d3d9e40f6f1597025c93c2b0890d66596de0/code/lists_mfr.erl#L1-L15
