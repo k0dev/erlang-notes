@@ -50,7 +50,9 @@ In generale:
   - la manipolazione dello stato avviene tramite scambio di messaggi
 
 ## Primo programma
+
 ```erlang
+% Nel file factorial.erl
 -module(factorial).
 -export([factorial/1]).
 
@@ -58,6 +60,7 @@ factorial(0) -> 1;
 factorial(N) -> N * factorial(N-1).
 ```
 ```erlang
+% Nella shell di erlang
 > c(factorial).
 {ok,factorial}
 > factorial:factorial(7).
