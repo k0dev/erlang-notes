@@ -4,6 +4,11 @@
 - Dinamically typed functional language
 - It supports distribution, fault tolerance and hot-swapping
 
+## Shell cheat sheet
+- h().   -> mostra lista comandi
+- q().   -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
+- halt() -> shutdown immediato
+
 
 ## Actor model
 Ogni oggetto è un attore (*actor*), con un comportamento definito e una mailbox. Gli attori comunicano tra di loro tramite le mailbox (quindi si scambiano messaggi). Ogni attore è implementato come un thread *leggero* a livello utente, pertanto è caratterizzato da un indirizzo univoco (pid).
@@ -44,7 +49,6 @@ factorial(N) -> N * factorial(N-1).
 - E' possibile usare la notazione scientifica
 - Si può ottenere il char code di un carattere con $char
 
-<!--- TODO: float -->
 ```erlang
 > 10.
 10
@@ -62,6 +66,8 @@ factorial(N) -> N * factorial(N-1).
 71
 > -12.35e-2.
 -0.1235
+> 0.7.
+0.7
 ```
 
 ## Atomi
