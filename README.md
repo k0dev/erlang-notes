@@ -25,6 +25,7 @@
 - It supports distribution, fault tolerance and hot-swapping
 
 ## Shell cheat sheet
+Questi comandi funzionano **solo** nella shell, **non** possono essere utilizzati nei file sorgente.
 - help(). -> mostra lista comandi
 - q().    -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
 - halt()  -> shutdown immediato
