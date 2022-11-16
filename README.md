@@ -260,18 +260,18 @@ receive
   ...
   Pattern_n [when GuardSeq_n] -> Body_n
   [after Expr_t -> Body_t]
-end
+end.
 ```
 L'actor tenta di prendere dalla mailbox il messaggio più vecchio che effettua il match con uno dei pattern. Se nessun messaggio effettua il match, l'actor aspetta indefinitamente in attesa che arrivi un messaggio valido. Se la clausola after è specificata, l'actor aspetta per un tempo massimo di `Expr_t` millisecondi, per poi valutare il contenuto di `Body_t`.
 ```erlang
 receive
   Any -> do_something(Any)
-end
+end.
 ```
 In questo esempio l'actor prenderà qualsiasi messaggio, quindi rimane in attesa solo quando la mailbox è vuota.
 ```erlang
 receive
   {Pid, something} -> do_something(Pid)
-end
+end.
 ```
 In questo esempio l'actor prende (se esiste) il messaggio più vecchio che effettua il match con `{Pid, something`}. Rimane in attesa fintanto che la mailbox è vuota o non contiene messaggi di questo tipo.
