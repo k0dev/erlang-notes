@@ -1,5 +1,23 @@
 # Erlang :(
-
+<!--toc:start-->
+- [Shell cheat sheet](#shell-cheat-sheet)
+- [Actor model](#actor-model)
+- [Primo programma](#primo-programma)
+- [Numeri](#numeri)
+- [Atomi](#atomi)
+- [Tuple](#tuple)
+- [Liste](#liste)
+- [Stringhe](#stringhe)
+- [Assegnamento](#assegnamento)
+- [Funzioni](#funzioni)
+- [Moduli](#moduli)
+- [Map, Filter, Reduce](#map-filter-reduce)
+- [List Comprehensions](#list-comprehensions)
+- [Concorrenza: introduzione](#concorrenza-introduzione)
+- [Invio di messaggi](#invio-di-messaggi)
+- [Ricezione di messaggi](#ricezione-di-messaggi)
+- [Actors registrati](#actors-registrati)
+<!--toc:end-->
 - Erlang è orientato alla concorrenza, ovvero il processo è la base di ogni computazione.
 - Dinamically typed functional language
 - It supports distribution, fault tolerance and hot-swapping
@@ -124,26 +142,69 @@ Per estrarre i valori dalle tuple usiamo il pattern matching:
 ```
 
 ## Liste
-Anche loro sono eterogenee.
+Possiamo creare una lista racchiudendo tra quadre alcuni valori, separandoli con la virgola: `[val1, val2, val3]`.
 ```erlang
-> [].
+> []. % lista vuota
 []
+> [1, 2, 3].
+[1,2,3]
+> [{rgb, 255, 10, 20}, {rgb, 100, 50, 30}].
+[{rgb,255,10,20},{rgb,100,50,30}]
+```
+Come le tuple, anche le liste sono eterogenee:
+```erlang
+> [1, "due", 3.0, atomo].
+[1,"due",3.0,atomo]
+```
+Se `TL` è una lista, allora `[HD | TL]` è una lista con testa `HD` e coda `TL`. La pipe `|` separa quindi la testa dalla coda.
+E' possibile aggiungere più di un elemento all'inizio di `TL` con la seguente sintassi: `[E1, ..., En | TL]`.
+```erlang
 > [1 | []].
 [1]
 > [1 | [2]].
 [1,2]
 > [1 | [2 | [3]]].
 [1,2,3]
-> [1, 2, 3].
-[1,2,3]
-> [1, "due", 3, ok].
-[1,"due",3,ok]
+> [1, 2, 3 | [4, 5, 6]].
+[1,2,3,"4","5","6"]
+```
+Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` delle variabii unbounded. Se `L` è una lista non vuota, allora `[H | T] = L` assegna ad `H` la testa della lista e a `T` la coda.
+```erlang
+> L = [1, 2, 3, 4].
+[1,2,3,4]
+> [H | T] = L.
+[1,2,3,4]
+> H.
+1
+> T.
+[2,3,4]
 ```
 
-Le stringhe sono liste di caratteri (evviva)
+## Stringhe
+Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere
 ```erlang
 > [$T, $e, $s, $t].
 "Test"
+```
+Ovviamente sarebbe scomodo utilizzare questa notazione, quindi abbiamo comunque la possibilità di usare i letterali stringa che verranno convertiti automaticamente in liste di codici caratteri.
+```erlang
+> "Test".
+"Test"
+> "Test" == [$T, $e, $s, $t].
+true
+> [H | T] = "Test".
+"Test"
+> H. % contiene il codice del carattere 'T'
+84
+> T.
+"est"
+```
+**Attenzione**: dato che una stringa è di fatto rappresentata come una lista di interi, la shell potrebbe stampare le liste di interi in modo inaspettato:
+```erlang
+> [75, 101, 118, 105, 110].              
+"Kevin"
+> [1, 75, 101, 118, 105, 110]. % 1 non è il codice di un carattere stampabile
+[1,75,101,118,105,110]
 ```
 Concatenazione di stringhe
 ```erlang
@@ -322,3 +383,4 @@ Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle B
 - whereis(atomo) -> Pid | undefined : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
 
 Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo per inviarli un messaggio (`atomo ! messaggio`).
+
