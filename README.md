@@ -71,7 +71,11 @@ factorial(N) -> N * factorial(N-1).
 ```
 
 ## Atomi
-Gli atomi devono iniziare con una lettera minuscola. Se racchiusi tra apici possono iniziare con la lettera maiuscola e contenere caratteri speciali.
+Gli atomi devono iniziare con una lettera minuscola e possono contenere l'underscore (_) o la chiocciola(@). Se racchiusi tra apici possono iniziare con la lettera maiuscola e contenere caratteri speciali.
+
+Gli atomi sono globali e vengono usati per rappresentare valori costanti.
+
+Il valore di un atomo è l'atomo stesso.
 ```erlang
 > test_@atomo.
 test_@atomo
