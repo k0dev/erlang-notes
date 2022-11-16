@@ -1,5 +1,26 @@
 # Erlang :(
 
+<!--toc:start-->
+- [Erlang :(](#erlang)
+  - [Shell cheat sheet](#shell-cheat-sheet)
+  - [Actor model](#actor-model)
+  - [Primo programma](#primo-programma)
+  - [Numeri](#numeri)
+  - [Atomi](#atomi)
+  - [Tuple](#tuple)
+  - [Liste](#liste)
+  - [Stringhe](#stringhe)
+  - [Assegnamento](#assegnamento)
+  - [Funzioni](#funzioni)
+  - [Moduli](#moduli)
+  - [Map, Filter, Reduce](#map-filter-reduce)
+  - [List Comprehensions](#list-comprehensions)
+  - [Concorrenza: introduzione](#concorrenza-introduzione)
+  - [Invio di messaggi](#invio-di-messaggi)
+  - [Ricezione di messaggi](#ricezione-di-messaggi)
+  - [Actors registrati](#actors-registrati)
+<!--toc:end-->
+
 - Erlang è orientato alla concorrenza, ovvero il processo è la base di ogni computazione.
 - Dinamically typed functional language
 - It supports distribution, fault tolerance and hot-swapping
