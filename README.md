@@ -292,11 +292,16 @@ Esempio:
 https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
 
 ## Moduli
+I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
+
+I moduli sono l'unità base di Erlang. Sono contenuti in file `.erl` e vengono compilati in `.beam`.
+
+La prima riga di un file è un *module declaration*, e il nome del modulo nella declaration deve essere lo stesso del file senza estensione. Quindi ad esempio nel file `mio_modulo.erl` possiamo avere:
 ```erlang
 -module(mio_modulo).
 -export([mia_funzione/3]).
 ```
-Significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli.
+Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli. Le funziono non esportate non possono essere chiamate da altri moduli.
 
 <!--- TODO:  guard sequence -->
 
