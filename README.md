@@ -25,9 +25,11 @@
 - It supports distribution, fault tolerance and hot-swapping
 
 ## Shell cheat sheet
-- h().   -> mostra lista comandi
-- q().   -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
-- halt() -> shutdown immediato
+- help(). -> mostra lista comandi
+- q().    -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
+- halt()  -> shutdown immediato
+- f()     -> unbound di tutte le variabili
+- f(X)    -> unbound della variabile X
 
 
 ## Actor model
