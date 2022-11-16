@@ -195,7 +195,7 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 ```
 
 ## Stringhe
-Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere.
+Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere (quindi in genere le operazioni eseguibili sulle liste si possono effettuare anche sulle stringhe).
 ```erlang
 > [$T, $e, $s, $t].
 "Test"
