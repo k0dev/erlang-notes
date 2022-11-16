@@ -32,7 +32,11 @@ Questi comandi funzionano **solo** nella shell, **non** possono essere utilizzat
 - f()     -> unbound di tutte le variabili
 - f(X)    -> unbound della variabile X
 - c(Mod)  -> compila e carica il modulo Mod
+- pwd()   -> stampa il path della cartella corrente
+- ls()    -> elenca i nomi dei file nella cartella corrente
+- cd(Dir) -> cambia la cartella corrente in Dir
 
+<!-- TODO: common problems: can’t load a module that resides in a sticky directory, liste di numeri stampate come stringe, eseguire il compilatore dalla stessa dir del file (anche quando si compila dalla shell con c(Mod), ecc. -->
 
 ## Actor model
 Ogni oggetto è un attore (*actor*), con un comportamento definito e una mailbox. Gli attori comunicano tra di loro tramite le mailbox (quindi si scambiano messaggi). Ogni attore è implementato come un thread *leggero* a livello utente, pertanto è caratterizzato da un indirizzo univoco (pid).
