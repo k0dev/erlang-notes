@@ -6,8 +6,21 @@
 
 
 ## Actor model
-- Scambio di messaggi asincrono
-- Memoria **non** condivisa
+Ogni oggetto è un attore (*actor*), con un comportamento definito e una mailbox. Gli attori comunicano tra di loro tramite le mailbox (quindi si scambiano messaggi). Ogni attore è implementato come un thread *leggero* a livello utente.
+
+Quando un attore riceve un messaggio:
+- può inviare altri messaggi a sua volta
+- può creare altri attori
+- può eseguire un azione
+- può trattare i messaggi successivi in modo differente
+
+In generale: 
+- Lo scambio di messaggi avviene in modo asincrono
+  - il mittente non aspetta che il messaggio venga ricevuto dopo averlo inviato
+  - non ci sono garanzie sull'ordine di ricevimento dei messaggi
+- Memoria **non** condivisa tra diversi attori
+  - le informazioni sullo stato sono richieste e inviate solo tramite messaggi
+  - la manipolazione dello stato avviene tramite scambio di messaggi
 
 ## Primo programma
 ```erlang
@@ -206,3 +219,26 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 Esempi:
 - [quick sort](code/list_comprehension/qsort.erl)
 - [numeri primi <= n](code/list_comprehension/primes.erl)
+
+## Concorrenza: introduzione
+Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
+- la funzione built-in (BIF - built-in function) *spawn* per creare nuovi actors
+- l'operatore ! per inviare un messaggio ad un actor
+- un meccanismo per eseguire il pattern matching sui messaggi nella mailbox
+
+```erlang
+-module(concurrency_test).
+-export([start/2, loop/2]).
+
+% spawn(module_name, function, param_list)
+start(N, Id) -> spawn(concurrency_test, loop, [N, Id]).
+
+% self() restituisce il pid del thread corrente
+loop(0, Id) -> io:format("(pid: ~p - id: ~p) end~n", [self(), Id]);
+loop(N, Id) -> io:format("(pid: ~p - id: ~p) ~p~n", [self(), Id, N]), loop(N-1, Id).
+```
+
+1. `concurrency_test:loop(10, a), concurrency_test:loop(10, b).`
+2. `concurrency_test:start(10, a), concurrency_test:start(10, b).`
+
+La differenza è che nel primo modo eseguiamo due conti alla rovescia in modo sequenziale, nello stesso thread/actor. Nel secondo modo invece creiamo un actor per ogni conto alla rovescia, quindi i conteggi saranno eseguiti in maniera concorrente.
