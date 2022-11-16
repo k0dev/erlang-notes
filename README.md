@@ -203,10 +203,16 @@ true
 ```
 **Attenzione**: dato che una stringa è di fatto rappresentata come una lista di interi, la shell potrebbe stampare le liste di interi in modo inaspettato:
 ```erlang
-> [75, 101, 118, 105, 110].              
+> [75, 101, 118, 105, 110]. % sono tutti codici di caratteri stampabili       
 "Kevin"
 > [1, 75, 101, 118, 105, 110]. % 1 non è il codice di un carattere stampabile
 [1,75,101,118,105,110]
+> io:format("~p~n",["abc"]). % stampa come stringa
+"abc"
+ok
+> io:format("~w~n",["abc"]). % stampa come lista di interi
+[97,98,99]
+ok
 ```
 
 Concatenazione di stringhe
