@@ -181,6 +181,18 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 > T.
 [2,3,4]
 ```
+```
+> [First, Second, Third | Rest] = [1,2,3,4,5,6,7].
+[1,2,3,4,5,6,7]
+> First.
+1
+> Second.
+2
+> Third.
+3
+> Rest.
+[4,5,6,7]
+```
 
 ## Stringhe
 Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere.
