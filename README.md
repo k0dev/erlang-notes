@@ -163,11 +163,32 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 ```
 
 ## Stringhe
-Le stringhe sono liste di caratteri.
+Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere.
 ```erlang
 > [$T, $e, $s, $t].
 "Test"
 ```
+Ovviamente sarebbe scomodo utilizzare questa notazione, quindi abbiamo comunque la possibilità di usare i letterali stringa che verranno convertiti automaticamente in liste di codici caratteri.
+```erlang
+> "Test".
+"Test"
+> "Test" == [$T, $e, $s, $t].
+true
+> [H | T] = "Test".
+"Test"
+> H. % contiene il codice del carattere 'T'
+84
+> T.
+"est"
+```
+**Attenzione**: dato che una stringa è di fatto rappresentata come una lista di interi, la shell potrebbe stampare le liste di interi in modo inaspettato:
+```erlang
+> [75, 101, 118, 105, 110].              
+"Kevin"
+> [1, 75, 101, 118, 105, 110]. % 1 non è il codice di un carattere stampabile
+[1,75,101,118,105,110]
+```
+
 Concatenazione di stringhe
 ```erlang
 > "Uno "++"due".
