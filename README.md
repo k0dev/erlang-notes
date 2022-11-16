@@ -275,3 +275,7 @@ receive
 end.
 ```
 In questo esempio l'actor prende (se esiste) il messaggio più vecchio che effettua il match con `{Pid, something`}. Rimane in attesa fintanto che la mailbox è vuota o non contiene messaggi di questo tipo.
+
+Esempi:
+- [conversione temperature](code/message_recv/converter.erl)
+- [calcolo aree](code/message_recv/areas.erl)
