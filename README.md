@@ -30,6 +30,7 @@
 - halt()  -> shutdown immediato
 - f()     -> unbound di tutte le variabili
 - f(X)    -> unbound della variabile X
+- c(Mod)  -> compila e carica il modulo Mod
 
 
 ## Actor model
