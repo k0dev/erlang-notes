@@ -192,7 +192,7 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 > T.
 [2,3,4]
 ```
-```
+```erlang
 > [First, Second, Third | Rest] = [1,2,3,4,5,6,7].
 [1,2,3,4,5,6,7]
 > First.
@@ -203,6 +203,10 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 3
 > Rest.
 [4,5,6,7]
+> [1, 2, 3, 1, 2, 3] -- [2, 2, 1, 3]. % sottrazione tra liste
+[1,3]
+> [9, 8, 7] ++ [1, 2, 3]. % concatenazione tra liste
+[9,8,7,1,2,3]
 ```
 
 ## Stringhe
