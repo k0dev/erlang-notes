@@ -86,9 +86,14 @@ test_@atomo
 ```
 
 ## Tuple
-Eterogenee, possono essere nidificate, ecc.
+Possiamo creare una tupla racchiudendo tra graffe alcuni valori, separandoli con la virgola: `{val1, val2, val3}`
 
-Sono tuple :D
+I campi delle tuple non hanno un nome. E' una buona idea mettere un atomo come primo elemento della tupla, in modo da descriverne il contenuto.
+```erlang
+{255, 10, 20}
+{rgb, 255, 10, 20} % più chiaro
+```
+Le tuple in Erlang sono eterogenee.
 ```erlang
 > {"a", "b"}.
 {"a","b"}
@@ -98,6 +103,24 @@ Sono tuple :D
 {colore,{120,255,80}}
 > {{1,2},3}=={1,{2,3}}.
 false
+```
+Possiamo creare tuple nidificate:
+```erlang
+> {color, {red, 255}, {green, 10}, {red, 50}}. % usiamo gli atomi per identificare sia il contenuto generale, sia il contenuto dei vari "campi"
+{color,{red,255},{green,10},{red,50}}
+```
+Per estrarre i valori dalle tuple usiamo il pattern matching:
+```erlang
+> C = {color, 255, 10, 20}.
+{color,255,10,20}
+> {color, R, G, B} = C.
+{color,255,10,20}
+> R.
+255
+> G.
+10
+> B.
+20
 ```
 
 ## Liste
