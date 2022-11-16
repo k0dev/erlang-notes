@@ -124,23 +124,46 @@ Per estrarre i valori dalle tuple usiamo il pattern matching:
 ```
 
 ## Liste
-Anche loro sono eterogenee.
+Possiamo creare una lista racchiudendo tra quadre alcuni valori, separandoli con la virgola: `[val1, val2, val3]`.
 ```erlang
-> [].
+> []. % lista vuota
 []
+> [1, 2, 3].
+[1,2,3]
+> [{rgb, 255, 10, 20}, {rgb, 100, 50, 30}].
+[{rgb,255,10,20},{rgb,100,50,30}]
+```
+Come le tuple, anche le liste sono eterogenee:
+```erlang
+> [1, "due", 3.0, atomo].
+[1,"due",3.0,atomo]
+```
+Se `TL` è una lista, allora `[HD | TL]` è una lista con testa `HD` e coda `TL`. La pipe `|` separa quindi la testa dalla coda.
+E' possibile aggiungere più di un elemento all'inizio di `TL` con la seguente sintassi: `[E1, ..., En | TL]`.
+```erlang
 > [1 | []].
 [1]
 > [1 | [2]].
 [1,2]
 > [1 | [2 | [3]]].
 [1,2,3]
-> [1, 2, 3].
-[1,2,3]
-> [1, "due", 3, ok].
-[1,"due",3,ok]
+> [1, 2, 3 | [4, 5, 6]].
+[1,2,3,"4","5","6"]
+```
+Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` delle variabii unbounded. Se `L` è una lista non vuota, allora `[H | T] = L` assegna ad `H` la testa della lista e a `T` la coda.
+```erlang
+> L = [1, 2, 3, 4].
+[1,2,3,4]
+> [H | T] = L.
+[1,2,3,4]
+> H.
+1
+> T.
+[2,3,4]
 ```
 
-Le stringhe sono liste di caratteri (evviva)
+## Stringhe
+Le stringhe sono liste di caratteri.
 ```erlang
 > [$T, $e, $s, $t].
 "Test"
