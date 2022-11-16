@@ -11,6 +11,7 @@
 - [Stringhe](#stringhe)
 - [Assegnamento](#assegnamento)
 - [Funzioni](#funzioni)
+- [Funzioni anonime](#funzioni-anonime)
 - [Moduli](#moduli)
 - [Map, Filter, Reduce](#map-filter-reduce)
 - [List Comprehensions](#list-comprehensions)
@@ -300,6 +301,22 @@ name(patternk1 , patternk2 , ..., patternkn) [when guardk ] -> bodyk.
 Esempio:
 
 https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
+
+## Funzioni anonime
+```erlang
+> Next = fun(K) -> K+1 end.
+#Fun<erl_eval.42.3316493>
+> Next(3).
+4
+> Next(5).
+6
+> Invert = fun(true) -> false; (false) -> true end.
+#Fun<erl_eval.42.3316493>
+> Invert(true).
+false
+> Invert(false).
+true
+```
 
 ## Moduli
 I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
