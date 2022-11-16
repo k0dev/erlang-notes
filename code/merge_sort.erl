@@ -1,6 +1,8 @@
 -module(merge_sort).
 -export([merge_sort/1, merge_sort/2]).
 
+% implementazione naive, spawna un processo per ogni sublist (anche se la lista da ordinare è molto corta), quindi crasha per liste grandi
+
 merge([], [], C, _) -> lists:reverse(C);
 merge([], [B|BS], C, P) ->
 	merge([], BS, [B|C], P);
