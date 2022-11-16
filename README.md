@@ -251,3 +251,27 @@ Exp1 ! Exp2
 dove `Exp1` deve identificare l'attore destinatario e `Exp2` può essere qualsiasi espressione valida. Il risultato dell'espressione send (`!`) è il valore di `Exp2`.
 
 L'invio non fallisce mai, nemmeno quando il pid specificato non appartiene ad alcun actor. Inoltre l'operazione di send non è bloccante per il mittente.
+
+## Ricezione di messaggi
+La ricezione dei messaggi avviene mediante pattern matching:
+```erlang
+receive
+  Pattern_1 [when GuardSeq_1] -> Body_1 ;
+  ...
+  Pattern_n [when GuardSeq_n] -> Body_n
+  [after Expr_t -> Body_t]
+end
+```
+L'actor tenta di prendere dalla mailbox il messaggio più vecchio che effettua il match con uno dei pattern. Se nessun messaggio effettua il match, l'actor aspetta indefinitamente in attesa che arrivi un messaggio valido. Se la clausola after è specificata, l'actor aspetta per un tempo massimo di `Expr_t` millisecondi, per poi valutare il contenuto di `Body_t`.
+```erlang
+receive
+  Any -> do_something(Any)
+end
+```
+In questo esempio l'actor prenderà qualsiasi messaggio, quindi rimane in attesa solo quando la mailbox è vuota.
+```erlang
+receive
+  {Pid, something} -> do_something(Pid)
+end
+```
+In questo esempio l'actor prende (se esiste) il messaggio più vecchio che effettua il match con `{Pid, something`}. Rimane in attesa fintanto che la mailbox è vuota o non contiene messaggi di questo tipo.
