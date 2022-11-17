@@ -391,12 +391,15 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 ["a","b","a","b"]
 > [X*2 || X <- [1,2,3,4,5,6,7], X>3]. % raddoppiamo tutti gli elementi maggiori di 3
 [8,10,12,14]
-> [[A, B] || A<-[a,b], B<-[a,b]]. % permutazioni di [a,b]
+> [[A, B] || A<-[a,b], B<-[a,b]].
 [[a,a],[a,b],[b,a],[b,b]]
+> [X || {r, X} <- [{r, 10}, {r, 20}, {g, 100}, "test"]]. % pattern matching sul generatore
+[10,20]
 ```
 Esempi:
 - [quick sort](code/examples/list_comprehension/qsort.erl)
 - [numeri primi <= n](code/examples/list_comprehension/primes.erl)
+- [anagrammi](code/examples/list_comprehension/anagrams.erl)
 
 ## Concorrenza: introduzione
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
