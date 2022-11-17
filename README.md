@@ -11,7 +11,7 @@
 - [Stringhe](#stringhe)
 - [Assegnamento](#assegnamento)
 - [Funzioni](#funzioni)
-- [Funzioni anonime](#funzioni-anonime)
+- [Funzioni anonime (lambda)](#funzioni-anonime-lambda)
 - [Moduli](#moduli)
 - [Map, Filter, Reduce](#map-filter-reduce)
 - [List Comprehensions](#list-comprehensions)
@@ -310,8 +310,10 @@ Esempio:
 
 https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
 
-## Funzioni anonime
+## Funzioni anonime (lambda)
 ```erlang
+> (fun(X) -> X*2 end)(10).
+20
 > Next = fun(K) -> K+1 end.
 #Fun<erl_eval.42.3316493>
 > Next(3).
