@@ -27,15 +27,15 @@
 
 ## Shell cheat sheet
 Questi comandi funzionano **solo** nella shell, **non** possono essere utilizzati nei file sorgente.
-- help(). -> mostra lista comandi
-- q().    -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
-- halt()  -> shutdown immediato
-- f()     -> unbound di tutte le variabili
-- f(X)    -> unbound della variabile X
-- c(Mod)  -> compila e carica il modulo Mod
-- pwd()   -> stampa il path della cartella corrente
-- ls()    -> elenca i nomi dei file nella cartella corrente
-- cd(Dir) -> cambia la cartella corrente in Dir
+- `help().` -> mostra lista comandi
+- `q().`    -> shutdown controllato (tutti i file aperti vengono flushati e chiusi, i database aperti vengono fermati, ecc.)
+- `halt()`  -> shutdown immediato
+- `f()`     -> unbound di tutte le variabili
+- `f(X)`    -> unbound della variabile X
+- `c(Mod)`  -> compila e carica il modulo Mod
+- `pwd()`   -> stampa il path della cartella corrente
+- `ls()`    -> elenca i nomi dei file nella cartella corrente
+- `cd(Dir)` -> cambia la cartella corrente in Dir
 
 <!-- TODO: common problems: can’t load a module that resides in a sticky directory, liste di numeri stampate come stringe, eseguire il compilatore dalla stessa dir del file (anche quando si compila dalla shell con c(Mod), ecc. -->
 
@@ -77,9 +77,11 @@ factorial(N) -> N * factorial(N-1).
 ```
 
 ## Numeri
-- E' possibile specificare la base del numero con la seguente sintassi: base#num
+(*le parentesi angolari servono solo per identificare una label, non vanno inserite!
+`<base>` &rarr; `base`*)
+- E' possibile specificare la base del numero con la seguente sintassi: `<base>#<num>`
 - E' possibile usare la notazione scientifica
-- Si può ottenere il char code di un carattere con $char
+- Si può ottenere il char code di un carattere con `$<char>`
 
 ```erlang
 > 10.
@@ -103,7 +105,7 @@ factorial(N) -> N * factorial(N-1).
 ```
 
 ## Atomi
-Gli atomi devono iniziare con una lettera minuscola e possono contenere l'underscore (_) o la chiocciola(@). Se racchiusi tra apici possono iniziare con la lettera maiuscola e contenere caratteri speciali.
+Gli atomi devono iniziare con una lettera minuscola e possono contenere l'underscore `_` o la chiocciola `@`. Se racchiusi tra apici possono iniziare con la lettera maiuscola e contenere caratteri speciali.
 
 Gli atomi sono globali e vengono usati per rappresentare valori costanti.
 
@@ -229,7 +231,7 @@ true
 > T.
 "est"
 ```
-**Attenzione**: dato che una stringa è di fatto rappresentata come una lista di interi, la shell potrebbe stampare le liste di interi in modo inaspettato:
+⚠️  **Attenzione**: dato che una stringa è di fatto rappresentata come una lista di interi, la shell potrebbe stampare le liste di interi in modo inaspettato:
 ```erlang
 > [75, 101, 118, 105, 110]. % sono tutti codici di caratteri stampabili       
 "Kevin"
@@ -261,7 +263,7 @@ Sottrazione tra stringhe
 ## Assegnamento 
 L'operazione di *assegnamento* binda un nome ad un valore. Una volta assegnato, non si può modificare.
 Le "variabili" devono iniziare con una lettera maiuscola.
-_ è anonima.
+`_` è anonima.
 ```erlang
 > A = 1.
 1
@@ -388,8 +390,8 @@ Esempi:
 
 ## Concorrenza: introduzione
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
-- la funzione built-in (BIF - built-in function) `spawn` per creare nuovi actors
-- l'operatore `!` per inviare un messaggio ad un actor
+- `spawn` la funzione built-in (BIF - built-in function) per creare nuovi actors
+- `!` l'operatore per inviare un messaggio ad un actor
 - un meccanismo per eseguire il pattern matching sui messaggi nella mailbox
 
 ```erlang
@@ -449,9 +451,9 @@ Esempi:
 ## Actors registrati
 Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un actor sotto un certo nome. Il nome deve essere un atomo e viene automaticamente eliminato se il processo termina.
 
-- register(atomo, Pid)
-- registered() : restituisce una lista dei nomi registrati
-- unregister(atomo)
-- whereis(atomo) -> Pid | undefined : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
+- `register(atomo, Pid)`
+- `registered()` : restituisce una lista dei nomi registrati
+- `unregister(atomo)`
+- `whereis(atomo)` -> Pid | undefined : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
 
 Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo per inviarli un messaggio (`atomo ! messaggio`).
