@@ -145,6 +145,12 @@ Possiamo creare tuple nidificate:
 ```
 Per estrarre i valori dalle tuple usiamo il pattern matching:
 ```erlang
+> {A, B} = {10, 20}.
+{10,20}
+> A.
+10
+> B.
+20
 > C = {color, 255, 10, 20}.
 {color,255,10,20}
 > {color, R, G, B} = C.
