@@ -320,7 +320,7 @@ false
 true
 ```
 Esempi:
-- [for loop]()
+- [for loop](code/examples/lambdas/forloop.erl)
 
 ## Moduli
 I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
