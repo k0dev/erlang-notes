@@ -317,6 +317,8 @@ false
 > Invert(false).
 true
 ```
+Esempi:
+- [for loop]()
 
 ## Moduli
 I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
@@ -347,7 +349,7 @@ Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_f
 ```
 https://github.com/k0dev/erlang-notes/blob/2c42d3d9e40f6f1597025c93c2b0890d66596de0/code/lists_mfr.erl#L1-L15
 
-## List Comprehensions 
+## List Comprehension
 [Reference](https://www.erlang.org/doc/reference_manual/expressions.html#list-comprehensions)
 
 Forniscono una notazione succinta per la generazione di elementi in una lista.
@@ -381,8 +383,8 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 [8,10,12,14]
 ```
 Esempi:
-- [quick sort](code/list_comprehension/qsort.erl)
-- [numeri primi <= n](code/list_comprehension/primes.erl)
+- [quick sort](code/examples/list_comprehension/qsort.erl)
+- [numeri primi <= n](code/examples/list_comprehension/primes.erl)
 
 ## Concorrenza: introduzione
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
@@ -441,8 +443,8 @@ end.
 In questo esempio l'actor prende (se esiste) il messaggio più vecchio che effettua il match con `{Pid, something`}. Rimane in attesa fintanto che la mailbox è vuota o non contiene messaggi di questo tipo.
 
 Esempi:
-- [conversione temperature](code/message_recv/converter.erl)
-- [calcolo aree](code/message_recv/areas.erl)
+- [conversione temperature](code/examples/message_recv/converter.erl)
+- [calcolo aree](code/examples/message_recv/areas.erl)
 
 ## Actors registrati
 Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un actor sotto un certo nome. Il nome deve essere un atomo e viene automaticamente eliminato se il processo termina.
