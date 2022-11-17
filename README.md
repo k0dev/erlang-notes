@@ -452,8 +452,8 @@ Esempi:
 Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un actor sotto un certo nome. Il nome deve essere un atomo e viene automaticamente eliminato se il processo termina.
 
 - `register(atomo, Pid)`
-- `registered()` : restituisce una lista dei nomi registrati
+- `registered()`   : restituisce una lista dei nomi registrati
 - `unregister(atomo)`
-- `whereis(atomo)` -> Pid | undefined : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
+- `whereis(atomo)` : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
 
 Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo per inviarli un messaggio (`atomo ! messaggio`).
