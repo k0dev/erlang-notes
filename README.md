@@ -182,7 +182,7 @@ E' possibile aggiungere più di un elemento all'inizio di `TL` con la seguente s
 > [1 | [2 | [3]]].
 [1,2,3]
 > [1, 2, 3 | [4, 5, 6]].
-[1,2,3,"4","5","6"]
+[1,2,3,4,5,6]
 ```
 Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` delle variabii unbounded. Se `L` è una lista non vuota, allora `[H | T] = L` assegna ad `H` la testa della lista e a `T` la coda.
 ```erlang
