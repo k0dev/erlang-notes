@@ -383,6 +383,8 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 ["a","b","a","b"]
 > [X*2 || X <- [1,2,3,4,5,6,7], X>3]. % raddoppiamo tutti gli elementi maggiori di 3
 [8,10,12,14]
+> [[A, B] || A<-[a,b], B<-[a,b]]. % permutazioni di [a,b]
+[[a,a],[a,b],[b,a],[b,b]]
 ```
 Esempi:
 - [quick sort](code/examples/list_comprehension/qsort.erl)
