@@ -419,6 +419,27 @@ Esempi:
 - [numeri primi <= n](code/examples/list_comprehension/primes.erl)
 - [anagrammi](code/examples/list_comprehension/anagrams.erl)
 
+## Case e if
+`case` e `if` sono espressioni, quindi **devono** restituire un valore. Se non lo fanno, un eccezione viene lanciata a runtime. Per evitarlo si può definire un *match all* pattern per il case e una *true guard* per l'if.
+```erlang
+case Expr of
+  Pattern_1 [when Guard_1] -> body_1;
+  ...
+  Pattern_n [when Guard_n] -> body_n [;]
+  [other -> else_body]
+end
+```
+```erlang
+if
+  Guard_1 -> body_1;
+  ...
+  Guard_n -> body_n [;]
+  [true -> else_body]
+end
+```
+Esempi:
+- [divisione in pari e dispari](code/examples/case/odd_even.erl)
+
 ## Concorrenza: introduzione
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
 - `spawn` la funzione built-in (BIF - built-in function) per creare nuovi actors
