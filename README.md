@@ -480,12 +480,27 @@ Come suggerisce il nome, sono funzioni definite come parte di Erlang. Generalmen
 le BIFs forniscono interfacce verso il sistema operativo o eseguono operazioni che sarebbero
 impossibili o difficili da implementare in Erlang.
 ```erlang
-time().
+> time().
 {14,59,21}
-list_to_tuple([1,2,3]).
+> list_to_tuple([1,2,3]).
 {1,2,3}
 ```
-Tutte le BIFs appartengono al modulo `erlang`, ma la maggiorparte sono importate di default, quindi non è necessario specificare il prefisso `erlang:`
+```erlang
+> is_process_alive(<0.99.0>).
+false
+% In Erlang (essendo un linguaggio funzionale), le funzioni devono sempre 
+% restituire qualcosa (in questo caso non mi serve quindi restituisco un 
+% atomo con un nome significativo in modo da dare un po' di semantica).
+> spawn(fun() -> receive die -> void end end). % void è un atomo
+<0.98.0>
+> is_process_alive(<0.98.0>).
+true
+> <0.98.0> ! die.
+die
+> is_process_alive(<0.98.0>).
+false
+```
+Tutte le BIFs appartengono al modulo `erlang`, ma la maggior parte sono importate di default, quindi non è necessario specificare il prefisso `erlang:`
 ```erlang
 > statistics(wall_clock). % non serve specificare il modulo
 {544554,116524}
