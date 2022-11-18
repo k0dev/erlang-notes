@@ -492,4 +492,7 @@ Tutte le BIFs appartengono al modulo `erlang`, ma la maggiorparte sono importate
 > erlang:statistics(wall_clock).
 {547095,2541}
 ```
-[Lista completa dalla documentazione ufficiale](https://www.erlang.org/doc/man/erlang.html)
+[Lista completa nella documentazione ufficiale](https://www.erlang.org/doc/man/erlang.html).
+
+Esempi:
+- [test benchmark](code/examples/bifs/benchmark.erl)
