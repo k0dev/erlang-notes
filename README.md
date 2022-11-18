@@ -478,7 +478,7 @@ Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo p
 ## BIFs (Built-In Functions)
 Come suggerisce il nome, sono funzioni definite come parte di Erlang. Generalmente
 le BIFs forniscono interfacce verso il sistema operativo o eseguono operazioni che sarebbero
-impossibili o difficili da implementare in Erlang.
+impossibili o difficili da implementare in Erlang. Alcuni esempi di BIFs sono: `time`, `list_to_tuple`, `is_process_alive`, `spawn` e `statistics`.
 ```erlang
 > time().
 {14,59,21}
