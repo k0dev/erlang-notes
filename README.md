@@ -15,7 +15,7 @@
 - [Guards](#guards)
 - [Moduli](#moduli)
 - [Map, Filter, Reduce](#map-filter-reduce)
-- [List Comprehensions](#list-comprehensions)
+- [List Comprehension](#list-comprehension)
 - [Concorrenza: introduzione](#concorrenza-introduzione)
 - [Invio di messaggi](#invio-di-messaggi)
 - [Ricezione di messaggi](#ricezione-di-messaggi)
