@@ -344,6 +344,9 @@ GuardExp1, ..., GuardExpN % guard
 ```
 Una `guard expression` è un espressione appartenenente ad uno specifico sottoinsieme di tutte le espressioni valide in Erlang. L'elenco di tali espressioni è disponibile [qui](https://www.erlang.org/doc/reference_manual/expressions.html#guard-expressions).
 
+Esempi:
+- [massimo in una lista di interi](code/examples/guard/int_list_max.erl)
+
 ## Moduli
 I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
 
