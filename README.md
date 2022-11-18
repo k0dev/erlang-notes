@@ -164,6 +164,8 @@ Per estrarre i valori dalle tuple usiamo il pattern matching:
 > B.
 20
 ```
+Alcune BIFs utili per lavorare con le tuple: `element/2`, `setelement/3`, `
+erlang:delete_element/2`, `list_to_tuple/1`
 
 ## Liste
 Possiamo creare una lista racchiudendo tra quadre alcuni valori, separandoli con la virgola: `[val1, val2, val3]`.
