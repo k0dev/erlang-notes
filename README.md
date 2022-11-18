@@ -349,15 +349,18 @@ Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_f
 % utilizzando le funzioni dal modulo lists
 > L = lists:seq(1, 20).
 [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
-> lists:map(fun(X) -> X rem 3 == 0 end, L).
+> lists:map(fun(X) -> X rem 3 == 0 end, L). % map
 [false,false,true,false,false,true,false,false,true,false,
  false,true,false,false,true,false,false,true,false,false]
-> lists:filter(fun(X) -> X rem 3 == 0 end, L).
+> lists:filter(fun(X) -> X rem 3 == 0 end, L). % filter
 [3,6,9,12,15,18]
-> lists:foldl(fun(Acc, H) -> Acc+H end, 0, L).
+> lists:foldl(fun(Acc, H) -> Acc+H end, 0, L). % reduce
 210
 ```
-https://github.com/k0dev/erlang-notes/blob/2c42d3d9e40f6f1597025c93c2b0890d66596de0/code/lists_mfr.erl#L1-L15
+Esempi:
+- [implementazione map, filter, reduce](code/examples/mfr/lists_mfr.erl)
+- [somma degli elementi in una lista](code/examples/mfr/sum.erl)
+- [somma degli elementi in una lista usando foldl](code/examples/mfr/sum_fl.erl)
 
 ## List Comprehension
 [Reference](https://www.erlang.org/doc/reference_manual/expressions.html#list-comprehensions)
