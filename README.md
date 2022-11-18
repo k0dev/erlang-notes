@@ -19,6 +19,7 @@
 - [Invio di messaggi](#invio-di-messaggi)
 - [Ricezione di messaggi](#ricezione-di-messaggi)
 - [Actors registrati](#actors-registrati)
+- [BIFs (Built-In Functions)](#bifs-built-in-functions)
 <!--toc:end-->
 
 - Erlang è orientato alla concorrenza, ovvero il processo è la base di ogni computazione.
@@ -473,3 +474,22 @@ Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle B
 - `whereis(atomo)` : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
 
 Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo per inviarli un messaggio (`atomo ! messaggio`).
+
+## BIFs (Built-In Functions)
+Come suggerisce il nome, sono funzioni definite come parte di Erlang. Generalmente
+le BIFs forniscono interfacce verso il sistema operativo o eseguono operazioni che sarebbero
+impossibili o difficili da implementare in Erlang.
+```erlang
+time().
+{14,59,21}
+list_to_tuple([1,2,3]).
+{1,2,3}
+```
+Tutte le BIFs appartengono al modulo `erlang`, ma la maggiorparte sono importate di default, quindi non è necessario specificare il prefisso `erlang:`
+```erlang
+> statistics(wall_clock). % non serve specificare il modulo
+{544554,116524}
+> erlang:statistics(wall_clock).
+{547095,2541}
+```
+[Lista completa dalla documentazione ufficiale](https://www.erlang.org/doc/man/erlang.html)
