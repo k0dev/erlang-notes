@@ -1,5 +1,8 @@
 # Erlang :(
 
+### [Soluzioni esercizi primo laboratorio (work in progress...)](code/lab/lab01/)
+
+## Indice
 <!--toc:start-->
 - [Shell cheat sheet](#shell-cheat-sheet)
 - [Actor model](#actor-model)
