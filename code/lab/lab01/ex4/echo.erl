@@ -11,7 +11,7 @@ print(Term) ->
   ok.
 
 stop() -> 
-  echo_server ! stop,
+  exit(whereis(echo_server), stopped),
   ok.
 
 server_loop() -> 

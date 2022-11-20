@@ -3,10 +3,11 @@
 
 test() ->
   echo:start(),
+  link(whereis(echo_server)),   % qundo il server termina, terminiamo anche noi
   spawn(fun() -> timer:sleep(5000), echo:stop() end),
   loop(0).
 
 loop(I) ->
-  echo:print(I),     % crasha dopo la chiamata a echo:stop()
+  echo:print(I),
   timer:sleep(500),
   loop(I+1).
