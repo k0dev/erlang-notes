@@ -6,13 +6,17 @@ start() ->
   register(echo_server, spawn(?MODULE, server_loop, [])),
   ok.
 
-print(_Term) -> exit(not_implemented_yet).
+print(Term) -> 
+  echo_server ! {msg, Term},   % in questo modo "echo:print(stop)." non ferma il server ma stampa "stop"
+  ok.
 
-stop() -> exit(not_implemented_yet).
+stop() -> 
+  echo_server ! stop,
+  ok.
 
 server_loop() -> 
   receive
-    stop -> io:format("echo_server stopping~n");
-    M    -> io:format("echo_server: ~p~n", [M]),
-            server_loop()
+    stop     -> io:format("echo_server stopping~n");
+    {msg, M} -> io:format("echo_server: ~p~n", [M]),
+                server_loop()
   end.
