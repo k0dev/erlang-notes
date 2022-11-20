@@ -562,3 +562,11 @@ Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere 
 Esempi:
 - [utilizzo di exit/2](code/examples/concurrency/killer.erl)
 - [esempio di trap_exit](code/examples/concurrency/trap.erl)
+<!--## Gestione degli errori
+[Reference](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
+
+Terminare un processo causa l'emissione di segnali di uscita a tutti i processi collegati ad esso. Questi processi possono terminare a loro volta o gestire il segnale in altro modo.
+
+TODO: process_flag(trap_exit, true), kill, normal, ecc.
+
+Questo crea di fatto una gerarchia dove i segnali di uscita si propagano, quindi ad esempio è possibile strutturare il programma in modo tale che alcuni processi ne supervisionino altri. -->
