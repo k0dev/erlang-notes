@@ -358,12 +358,18 @@ I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o
 
 I moduli sono l'unità base di Erlang. Sono contenuti in file `.erl` e vengono compilati in `.beam`.
 
-La prima riga di un file è un *module declaration*, e il nome del modulo nella declaration deve essere lo stesso del file senza estensione. Quindi ad esempio nel file `mio_modulo.erl` possiamo avere:
+La prima riga di un file è un *module declaration*, e il nome del modulo nella declaration deve essere lo stesso del file senza estensione.
+Nelle righe seguenti posso dichiarare le funzioni da esportare specificando il nome della funzione e il numero di parametri.
+Quindi ad esempio nel file `mio_modulo.erl` possiamo avere:
 ```erlang
 -module(mio_modulo).
 -export([mia_funzione/3]).
 ```
 Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli. Le funziono non esportate non possono essere chiamate da altri moduli.
+
+Posso esportare funzioni con un numero variabile di parametri, separo i vari casi con una virgola (`,`).
+si può vedere un esempio in: 
+- [for loop](code/examples/lambdas/forloop.erl)
 
 ## Map, Filter, Reduce
 ```erlang
