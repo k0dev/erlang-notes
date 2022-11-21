@@ -339,16 +339,19 @@ Esempi:
 - [for loop](code/examples/lambdas/forloop.erl)
 
 ## Guards
+
+Una `guard expression` è un espressione appartenenente ad uno specifico sottoinsieme di tutte le espressioni valide in Erlang. L'elenco di tali espressioni è disponibile [qui](https://www.erlang.org/doc/reference_manual/expressions.html#guard-expressions).
+
+Una `guard` è una sequenza di `guard expressions`, separate da una virgola (`,`). Una guard è `true` se **tutte** le guard expressions di cui è composta sono vere.
+```erlang
+GuardExp1, ..., GuardExpN % guard
+```
+
 Una `guard sequence` è una sequenza di `guards`, separate da un punto e virgola (`;`). Una guard sequence è vera (`true`) se **almeno una** delle guard di cui è composta è vera.
 Inoltre, eventuali guard successive a quella valutata true, non vengono valutate.
 ```erlang
 Guard1; Guard2; ...; GuardK % guard sequence
 ```
-Una `guard` è una sequenza di `guard expressions`, separate da una virgola (`,`). Una guard è `true` se **tutte** le guard expressions di cui è composta sono vere.
-```erlang
-GuardExp1, ..., GuardExpN % guard
-```
-Una `guard expression` è un espressione appartenenente ad uno specifico sottoinsieme di tutte le espressioni valide in Erlang. L'elenco di tali espressioni è disponibile [qui](https://www.erlang.org/doc/reference_manual/expressions.html#guard-expressions).
 
 Esempi:
 - [massimo in una lista di interi](code/examples/guard/int_list_max.erl)
