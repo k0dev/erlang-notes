@@ -12,7 +12,7 @@
 % 22
 
 m([])     -> undefined;
-m([H|T])  -> m(H, T).
+m([H|T])  -> m(H, T);
 
 m(M, [])             -> M;
 m(M, [H|T]) when H>M -> m(H, T); % usiamo una guard per individuare un nuovo massimo
