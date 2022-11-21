@@ -420,6 +420,26 @@ Una list comprehension restituisce quindi una lista dove gli elementi sono il ri
 > [X || {r, X} <- [{r, 10}, {r, 20}, {g, 100}, "test"]]. % pattern matching sul generatore
 [10,20]
 ```
+
+I filtri vanno specificati dopo il pattern in cui assegno il valore alla variabile:
+
+```erlang
+% modo corretto
+> [ X || X <- [1,2,3,4,x,"ciao"], is_integer(X)].
+[1,2,3,4]
+
+% modi sbagliati
+> [ X ||  is_integer(X), X <- [1,2,3,4,x,"ciao"].
+* syntax error before: '.'
+
+> [ X ||  is_integer(X <- [1,2,3,4,x,"ciao")].  
+* syntax error before: '<-'
+
+> [ X || is_integer(X) <-[1,2,3,4]]. 
+* illegal pattern
+```
+
+
 Esempi:
 - [quick sort](code/examples/list_comprehension/qsort.erl)
 - [numeri primi <= n](code/examples/list_comprehension/primes.erl)
