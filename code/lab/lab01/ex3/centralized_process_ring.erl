@@ -3,11 +3,15 @@
 
 create(N) ->
   Pid = spawn(fun() -> ring_node(first_node) end),
+  io:format("[master] created node ~p with pid ~p chained to node 1 (first_node, not yet created)~n", [N, Pid]),
   create(Pid, N-1).
 
-create(NextNode, 1) -> register(first_node, spawn(fun() -> ring_node(NextNode) end));
+create(NextNode, 1) -> 
+  register(first_node, spawn(fun() -> ring_node(NextNode) end)),
+  io:format("[master] created node 1 (first_node) with pid ~p chained to node 2 with pid ~p~n", [whereis(first_node), NextNode]);
 create(NextNode, N) ->
   Pid = spawn(fun() -> ring_node(NextNode) end),
+  io:format("[master] created node ~p with pid ~p chained to node ~p with pid ~p~n", [N, Pid, N+1, NextNode]),
   create(Pid, N-1).
 
 start(_M, N, _Message) -> create(N).
@@ -24,20 +28,13 @@ ring_node(NextNode) ->
 debug_print(Msg, To) -> io:format("[From: ~p] -> [To: ~p] - ~p~n", [self(), To, Msg]).
 debug_print(Msg) -> io:format("[Pid: ~p] ~p~n", [self(), Msg]).
 
-%% Esempio di esecuzione:
+% Esempio output creazione:
 % 1> c(centralized_process_ring).
 % {ok,centralized_process_ring}
-% 2> centralized_process_ring:start(0, 5, unused).
-% true
-% 3> first_node ! stop.
-% [From: <0.93.0>] -> [To: <0.92.0>] - "stop"
-% stop
-% [Pid: <0.93.0>] "stopping"
-% [From: <0.92.0>] -> [To: <0.91.0>] - "stop"
-% [Pid: <0.92.0>] "stopping"
-% [From: <0.91.0>] -> [To: <0.90.0>] - "stop"
-% [Pid: <0.91.0>] "stopping"
-% [From: <0.90.0>] -> [To: <0.89.0>] - "stop"
-% [Pid: <0.90.0>] "stopping"
-% [From: <0.89.0>] -> [To: first_node] - "stop"
-% [Pid: <0.89.0>] "stopping"
+% 2> centralized_process_ring:start(0, 5, x).
+% [master] created node 5 with pid <0.89.0> chained to node 1 (first_node, not yet created)
+% [master] created node 4 with pid <0.90.0> chained to node 5 with pid <0.89.0>
+% [master] created node 3 with pid <0.91.0> chained to node 4 with pid <0.90.0>
+% [master] created node 2 with pid <0.92.0> chained to node 3 with pid <0.91.0>
+% [master] created node 1 (first_node) with pid <0.93.0> chained to node 2 with pid <0.92.0>
+% ok
