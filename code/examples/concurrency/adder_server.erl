@@ -25,7 +25,9 @@ start() -> spawn(adder_server, loop, []).
 rpc(Pid, Msg) ->
 	Pid ! {self(), Msg}, % Inoltra il messaggio al server aggiungendo il pid del chiamante
 	receive % Aspetta una risposta dal server
-		Any -> Any % La inoltra al chiamante (client)
+		% pattern match su Pid così prendo solo il messaggio che arriva da quel particolare server
+		% e non da un processo qualsiasi che ha mandato un messaggio al client
+		{Pid, Any} -> Any % restituisco il risultato al chiamante (client)
 	after(5000) -> exit(timeout)
 	end.
 
@@ -34,8 +36,9 @@ loop() ->
   receive
     {Pid, {A, B}} ->
         Total = A+B,
-        Pid ! Total,
+        Pid ! {self(), Total}, % Includo anche il mio pid così il client sa che il messaggio arriva da questo server
         loop();
     stop -> void;
-    Other -> io:format("received unknown message: ~p~n", [Other])
+    Other -> io:format("received unknown message: ~p~n", [Other]),
+	     loop()
   end.
