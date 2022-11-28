@@ -15,6 +15,7 @@
 - [Assegnamento](#assegnamento)
 - [Funzioni](#funzioni)
 - [Funzioni anonime (lambda)](#funzioni-anonime-lambda)
+- [Function References](#)
 - [Guards](#guards)
 - [Moduli](#moduli)
 - [Map, Filter, Reduce](#map-filter-reduce)
@@ -337,6 +338,19 @@ true
 ```
 Esempi:
 - [for loop](code/examples/lambdas/forloop.erl)
+
+## Function References
+Vengono usati per riferire una funzione definita nel modulo corrente o in
+modulo esterno.
+- `fun NomeFunzioneLocale/Arità`
+- `fun Modulo:FunzioneEsterna/Arità`
+```erlang
+-module(double).
+-export([double_list/1]).
+
+double_list(L) -> lists:map(fun double/1, L).
+double(X) -> X*2.
+```
 
 ## Guards
 Una `guard sequence` è una sequenza di `guards`, separate da un punto e virgola (`;`). Una guard sequence è vera (`true`) se **almeno una** delle guard di cui è composta è vera.
