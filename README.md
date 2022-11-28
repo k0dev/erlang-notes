@@ -15,9 +15,10 @@
 - [Assegnamento](#assegnamento)
 - [Funzioni](#funzioni)
 - [Funzioni anonime (lambda)](#funzioni-anonime-lambda)
-- [Function References](#)
+- [Function References](#function-references)
 - [Guards](#guards)
 - [Moduli](#moduli)
+- [Macors](#macros)
 - [Map, Filter, Reduce](#map-filter-reduce)
 - [List Comprehension](#list-comprehension)
 - [Concorrenza: introduzione](#concorrenza-introduzione)
@@ -378,6 +379,19 @@ La prima riga di un file è un *module declaration*, e il nome del modulo nella 
 -export([mia_funzione/3]).
 ```
 Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli. Le funziono non esportate non possono essere chiamate da altri moduli.
+
+## Macros
+Erlang predefinisce le seguenti macro:
+- `?FILE` nome del file
+- `?MODULE` nome del modulo
+- `?LINE` numero di linea
+
+Si possono definire nuove macro:
+```erlang
+-define(macro_name(arg1, .., argn), body)
+```
+Esempi:
+- [Custom macro](/home/k0dev/uni/lp/erlang/erlang-notes/code/examples/macro)
 
 ## Map, Filter, Reduce
 ```erlang
