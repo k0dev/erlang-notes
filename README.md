@@ -554,6 +554,7 @@ In questo esempio l'actor prende (se esiste) il messaggio più vecchio che effet
 Esempi:
 - [conversione temperature](code/examples/message_recv/converter.erl)
 - [calcolo aree](code/examples/message_recv/areas.erl)
+- [adder client-server](code/examples/concurrency/adder_server.erl)
 
 ## Actors registrati
 Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un actor sotto un certo nome. Il nome deve essere un atomo e viene automaticamente eliminato se il processo termina.
