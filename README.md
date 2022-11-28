@@ -605,11 +605,9 @@ Esempi:
 ## Link
 [Reference](https://www.erlang.org/doc/reference_manual/processes.html#links)
 
-La BIF `link/1` crea un collegamento tra il processo chiamante e quello specificato.
+La BIF `link/1` crea un collegamento tra il processo chiamante e quello specificato. Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere al massimo uno.
 
 Se uno dei due processi collegati termina, verrà inviato un segnale di uscita a quello rimanente.
-
-Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere al massimo uno (chiamate ripetute a link con lo stesso processo target non hanno effetto).
 
 Esempi:
 - [utilizzo di exit/2](code/examples/concurrency/killer.erl)
