@@ -499,7 +499,7 @@ Esempi:
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
 - `spawn` la funzione built-in (BIF - built-in function) per creare nuovi actors
 - `!` l'operatore per inviare un messaggio ad un actor
-- un meccanismo per eseguire il pattern matching sui messaggi nella mailbox
+- `receive` un meccanismo per eseguire il pattern matching sui messaggi nella mailbox
 
 ```erlang
 -module(concurrency_test).
