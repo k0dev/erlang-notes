@@ -391,7 +391,8 @@ Si possono definire nuove macro:
 -define(macro_name(arg1, .., argn), body)
 ```
 Esempi:
-- [Custom macro](/home/k0dev/uni/lp/erlang/erlang-notes/code/examples/macro)
+- [Custom macro](code/examples/macro/simple_example.erl)
+- [?LINE macro](code/examples/macro/better_debug.erl)
 
 ## Map, Filter, Reduce
 ```erlang
