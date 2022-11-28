@@ -1,6 +1,11 @@
 # Erlang :(
 
-### [Soluzioni esercizi primo laboratorio (work in progress...)](code/lab/lab01/)
+### Lab01
+- [Esercizio 1 - Sequential Erlang](code/lab/lab01/ex1/)
+- [Esercizio 2 - Evaluating Expressions](code/lab/lab01/ex2/expressions.erl)
+- [Esercizio 3 - The Process Ring](code/lab/lab01/ex3/centralized_process_ring.erl)
+- [Esercizio 4 - Ping Pong Server](code/lab/lab01/ex4/)
+- [Esercizio 5 - Counting Calls](code/lab/lab01/ex5/counting.erl)
 
 ## Indice
 <!--toc:start-->
@@ -25,7 +30,7 @@
 - [Concorrenza: introduzione](#concorrenza-introduzione)
 - [Invio di messaggi](#invio-di-messaggi)
 - [Ricezione di messaggi](#ricezione-di-messaggi)
-- [Actors registrati](#actors-registrati)
+- [Registrare un processo](#actors-registrati)
 - [BIFs (Built-In Functions)](#bifs-built-in-functions)
 - [Link](#link)
 <!--toc:end-->
@@ -556,15 +561,15 @@ Esempi:
 - [calcolo aree](code/examples/message_recv/areas.erl)
 - [adder client-server](code/examples/concurrency/adder_server.erl)
 
-## Actors registrati
-Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un actor sotto un certo nome. Il nome deve essere un atomo e viene automaticamente eliminato se il processo termina.
+## Registrare un processo
+Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un processo sotto un certo nome. Il nome deve essere un atomo. Quando il processo termina la registrazione viene annullata automaticamente.
 
 - `register(atomo, Pid)`
 - `registered()`   : restituisce una lista dei nomi registrati
 - `unregister(atomo)`
 - `whereis(atomo)` : restituisce il pid registrato con il nome `atomo` o `undefined` se il nome non è registrato
 
-Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo per inviarli un messaggio (`atomo ! messaggio`).
+Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo anche per inviargli un messaggio (`atomo ! messaggio`).
 
 ## BIFs (Built-In Functions)
 Come suggerisce il nome, sono funzioni definite come parte di Erlang. Generalmente
@@ -615,13 +620,13 @@ Esempi:
 - [esempio di trap_exit](code/examples/concurrency/trap.erl)
 
 ## Gestione degli errori
+[Manuale ufficiale](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
+
 In erlang, di solito, gli errori non vengono gestiti nel processo dove l'errore viene generato. Si preferisce lasciar terminare il processo in questione e correggere l'errore in qualche altro processo.
 
 Questo significa che è importante poter rilevare la terminazione anomala di un processo da un altro processo. Se si organizza il sistema in questo modo, quello che otteniamo è un insieme di processi di cui una parte (o tutti) monitora lo stato di altri processi.
 
-
-<!--## Gestione degli errori
-[Reference](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
+<!--## 
 
 Terminare un processo causa l'emissione di segnali di uscita a tutti i processi collegati ad esso. Questi processi possono terminare a loro volta o gestire il segnale in altro modo.
 
