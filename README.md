@@ -12,6 +12,7 @@
 - [Tuple](#tuple)
 - [Liste](#liste)
 - [Stringhe](#stringhe)
+- [Control Sequences](#control-sequences)
 - [Assegnamento](#assegnamento)
 - [Funzioni](#funzioni)
 - [Funzioni anonime (lambda)](#funzioni-anonime-lambda)
@@ -274,6 +275,25 @@ Sottrazione tra stringhe
 "Aabc"
 > "AAaabbcc"--"acbAc".
 "Aab"
+```
+
+## Control Sequences
+[Lista completa nella documentazione](https://www.erlang.org/doc/man/io.html#format-2)
+I più usati sono:
+- `~n` new line
+- `~p` pretty print
+- `~s` stampa una stringa senza virgolette
+- `~w` stampa il termine con la sintassi standard
+```erlang
+> io:format("~p~n", ["ciao"]).
+"ciao"
+ok
+> io:format("~s~n", ["ciao"]).
+ciao
+ok
+> io:format("~w~n", ["ciao"]).
+[99,105,97,111]
+ok
 ```
 
 ## Assegnamento 
