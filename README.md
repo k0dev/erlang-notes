@@ -19,7 +19,7 @@
 - [Function References](#function-references)
 - [Guards](#guards)
 - [Moduli](#moduli)
-- [Macors](#macros)
+- [Macros](#macros)
 - [Map, Filter, Reduce](#map-filter-reduce)
 - [List Comprehension](#list-comprehension)
 - [Concorrenza: introduzione](#concorrenza-introduzione)
@@ -613,6 +613,13 @@ Se uno dei due processi collegati termina, verrà inviato un segnale di uscita a
 Esempi:
 - [utilizzo di exit/2](code/examples/concurrency/killer.erl)
 - [esempio di trap_exit](code/examples/concurrency/trap.erl)
+
+## Gestione degli errori
+In erlang, di solito, gli errori non vengono gestiti nel processo dove l'errore viene generato. Si preferisce lasciar terminare il processo in questione e correggere l'errore in qualche altro processo.
+
+Questo significa che è importante poter rilevare la terminazione anomala di un processo da un altro processo. Se si organizza il sistema in questo modo, quello che otteniamo è un insieme di processi di cui una parte (o tutti) monitora lo stato di altri processi.
+
+
 <!--## Gestione degli errori
 [Reference](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
 
