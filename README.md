@@ -3,7 +3,7 @@
 ### Lab01
 - [Esercizio 1 - Sequential Erlang](code/lab/lab01/ex1/)
 - [Esercizio 2 - Evaluating Expressions](code/lab/lab01/ex2/expressions.erl)
-- [Esercizio 3 - The Process Ring](code/lab/lab01/ex3/centralized_process_ring.erl)
+- [Esercizio 3 - The Process Ring](code/lab/lab01/ex3/)
 - [Esercizio 4 - Ping Pong Server](code/lab/lab01/ex4/)
 - [Esercizio 5 - Counting Calls](code/lab/lab01/ex5/counting.erl)
 
