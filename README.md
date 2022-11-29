@@ -33,6 +33,7 @@
 - [Registrare un processo](#actors-registrati)
 - [BIFs (Built-In Functions)](#bifs-built-in-functions)
 - [Link](#link)
+- [Gestione degli errori](#gestione-degli-errori)
 <!--toc:end-->
 
 - Erlang è orientato alla concorrenza, ovvero il processo è la base di ogni computazione.
@@ -608,17 +609,6 @@ Tutte le BIFs appartengono al modulo `erlang`, ma la maggior parte sono importat
 Esempi:
 - [test benchmark](code/examples/bifs/benchmark.erl)
 
-## Link
-[Reference](https://www.erlang.org/doc/reference_manual/processes.html#links)
-
-La BIF `link/1` crea un collegamento tra il processo chiamante e quello specificato. Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere al massimo uno.
-
-Se uno dei due processi collegati termina, verrà inviato un segnale di uscita a quello rimanente.
-
-Esempi:
-- [utilizzo di exit/2](code/examples/concurrency/killer.erl)
-- [esempio di trap_exit](code/examples/concurrency/trap.erl)
-
 ## Gestione degli errori
 [Manuale ufficiale](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
 
@@ -626,10 +616,37 @@ In erlang, di solito, gli errori non vengono gestiti nel processo dove l'errore 
 
 Questo significa che è importante poter rilevare la terminazione anomala di un processo da un altro processo. Se si organizza il sistema in questo modo, quello che otteniamo è un insieme di processi di cui una parte (o tutti) monitora lo stato di altri processi.
 
-<!--## 
+Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e concetti:
 
-Terminare un processo causa l'emissione di segnali di uscita a tutti i processi collegati ad esso. Questi processi possono terminare a loro volta o gestire il segnale in altro modo.
+- ### [Link](#link-1)
+  Se due processi P1 e P2 sono collegati e P1 termina per qualsiasi ragione, viene
+  inviato un segnale di errore a P2 (e viceversa).
+- ### Segnali di errore
+  Quando un processo termina, viene inviato un segnale di errore a tutti i processi
+  ad esso collegati.
+- ### Processi normali
+  Sono i processi creati con la BIF `spawn`. Quando un processo normale riceve
+  un segnale di errore da parte di un processo che è terminato con un anomalia, 
+  esso terminerà a sua volta (se il segnale di errore è una terminazione normale,
+  allora non termina).
+- ### Processi di sistema
+  Un processo normale diventa un processo di sistema dopo la chiamata `process_flag(trap_exit, true)`. Quando un processo di sistema riceve un segnale di errore,
+  questo viene trasformato in un messaggio `{'EXIT', Pid, Why}` depositato nella
+  sua mailbox. `Pid` si riferisce al processo che è terminato e `Why` contiene
+  la ragione di tale terminazione. Se il processo è terminato senza errori, `Why` vale 
+  `normal`.
 
-TODO: process_flag(trap_exit, true), kill, normal, ecc.
+Esempi:
+- [link example](code/examples/bifs/link_example.erl)
+- [utilizzo di exit/2](code/examples/concurrency/killer.erl)
+- [esempio di trap_exit](code/examples/concurrency/trap.erl)
 
-Questo crea di fatto una gerarchia dove i segnali di uscita si propagano, quindi ad esempio è possibile strutturare il programma in modo tale che alcuni processi ne supervisionino altri. -->
+## Link
+[Reference](https://www.erlang.org/doc/reference_manual/processes.html#links)
+
+La BIF `link/1` crea un collegamento tra il processo chiamante e quello specificato. Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere al massimo uno.
+
+Se uno dei due processi collegati termina, verrà inviato un segnale di errore a quello rimanente.
+
+Esempi:
+- [link example](code/examples/bifs/link_example.erl)
