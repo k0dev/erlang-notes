@@ -16,7 +16,6 @@ stop() ->
 
 server_loop() -> 
   receive
-    stop     -> io:format("echo_server stopping~n");
     {msg, M} -> io:format("echo_server: ~p~n", [M]),
                 server_loop()
   end.
