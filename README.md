@@ -639,7 +639,8 @@ Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e conc
 Esempi:
 - [link example](code/examples/bifs/link_example.erl)
 - [utilizzo di exit/2](code/examples/concurrency/killer.erl)
-- [esempio di trap_exit](code/examples/concurrency/trap.erl)
+- [propagazione dei segnali di errore nei processi normali](code/examples/concurrency/die_togheter.erl)
+- [esempio di system process (trap_exit)](code/examples/concurrency/trap.erl)
 
 ## Link
 [Reference](https://www.erlang.org/doc/reference_manual/processes.html#links)
