@@ -32,6 +32,7 @@ example1() ->
     Processes = setup(),
     pp_print_alive(Processes),                       % tutti i processi sono vivi
     exit(proplists:get_value(p3, Processes), crash), % simulo un crash in p3
+    timer:sleep(50),                                 % aspetto che i segnali di uscita si propaghino
     pp_print_alive(Processes),                       % rimangono solo i processi P1 e P4
     clear(Processes).                                % termino anche P1 e P4
 
@@ -42,6 +43,7 @@ example2() ->
     Processes = setup(),
     pp_print_alive(Processes),                       % tutti i processi sono vivi
     exit(proplists:get_value(p1, Processes), crash), % simulo un crash in p1
+    timer:sleep(50),                                 % aspetto che i segnali di uscita si propaghino
     pp_print_alive(Processes),                       % è crashato solo p1 (il suo linkset è vuoto)
     clear(Processes).                                % termino tutti
 
@@ -53,6 +55,7 @@ example3() ->
     Processes = setup(),
     pp_print_alive(Processes),                       % tutti i processi sono vivi
     proplists:get_value(p3, Processes) ! stop,       % faccio terminare normalmente P3
+    timer:sleep(50),                                 % aspetto che i segnali di uscita si propaghino
     pp_print_alive(Processes),                       % è terminato solo P3
     clear(Processes).                                % termino tutti
 
