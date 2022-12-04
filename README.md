@@ -1,14 +1,17 @@
 # Erlang :(
 
-### Lab01
+<details>
+<summary><b>Lab01</b></summary>
+
 - [Esercizio 1 - Sequential Erlang](code/lab/lab01/ex1/)
 - [Esercizio 2 - Evaluating Expressions](code/lab/lab01/ex2/expressions.erl)
 - [Esercizio 3 - The Process Ring](code/lab/lab01/ex3/)
 - [Esercizio 4 - Ping Pong Server](code/lab/lab01/ex4/)
 - [Esercizio 5 - Counting Calls](code/lab/lab01/ex5/counting.erl)
+</details>
 
+----
 ## Indice
-<!--toc:start-->
 - [Shell cheat sheet](#shell-cheat-sheet)
 - [Actor model](#actor-model)
 - [Primo programma](#primo-programma)
@@ -33,12 +36,12 @@
 - [Registrare un processo](#actors-registrati)
 - [BIFs (Built-In Functions)](#bifs-built-in-functions)
 - [Gestione degli errori](#gestione-degli-errori)
-<!--toc:end-->
-
-- Erlang è orientato alla concorrenza, ovvero il processo è la base di ogni computazione.
-- Dinamically typed functional language
-- It supports distribution, fault tolerance and hot-swapping
-
+  - [Link](#link)
+  - [Segnali di uscita](#segnali-di-uscita)
+  - [Processi normali](#processi-normali)
+  - [Processi di sistema](#processi-di-sistema)
+  - [Monitor](#monitor)
+----
 ## Shell cheat sheet
 Questi comandi funzionano **solo** nella shell, **non** possono essere utilizzati nei file sorgente.
 - `help().` -> mostra lista comandi
@@ -52,7 +55,7 @@ Questi comandi funzionano **solo** nella shell, **non** possono essere utilizzat
 - `cd(Dir)` -> cambia la cartella corrente in Dir
 
 <!-- TODO: common problems: can’t load a module that resides in a sticky directory, liste di numeri stampate come stringe, eseguire il compilatore dalla stessa dir del file (anche quando si compila dalla shell con c(Mod), ecc. -->
-
+----
 ## Actor model
 Ogni oggetto è un attore (*actor*), con un comportamento definito e una mailbox. Gli attori comunicano tra di loro tramite le mailbox (quindi si scambiano messaggi). Ogni attore è implementato come un thread *leggero* a livello utente, pertanto è caratterizzato da un indirizzo univoco (pid).
 
@@ -69,7 +72,7 @@ In generale:
 - Memoria **non** condivisa tra diversi attori
   - le informazioni sullo stato sono richieste e inviate solo tramite messaggi
   - la manipolazione dello stato avviene tramite scambio di messaggi
-
+----
 ## Primo programma
 
 ```erlang
@@ -89,7 +92,7 @@ factorial(N) -> N * factorial(N-1).
 > factorial:factorial(100).
 93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000
 ```
-
+----
 ## Numeri
 (*le parentesi angolari servono solo per identificare una label, non vanno inserite!
 `<base>` &rarr; `base`*)
@@ -117,7 +120,7 @@ factorial(N) -> N * factorial(N-1).
 > 0.7.
 0.7
 ```
-
+----
 ## Atomi
 Gli atomi devono iniziare con una lettera minuscola e possono contenere l'underscore `_` o la chiocciola `@`. Se racchiusi tra apici possono iniziare con la lettera maiuscola e contenere caratteri speciali.
 
@@ -132,7 +135,7 @@ test_@atomo
 > 'Atomo'.      
 'Atomo'
 ```
-
+----
 ## Tuple
 Possiamo creare una tupla racchiudendo tra graffe alcuni valori, separandoli con la virgola: `{val1, val2, val3}`
 
@@ -179,6 +182,7 @@ Per estrarre i valori dalle tuple usiamo il pattern matching:
 Alcune BIFs utili per lavorare con le tuple: `element/2`, `setelement/3`, `
 erlang:delete_element/2`, `list_to_tuple/1`
 
+----
 ## Liste
 Possiamo creare una lista racchiudendo tra quadre alcuni valori, separandoli con la virgola: `[val1, val2, val3]`.
 ```erlang
@@ -234,6 +238,7 @@ Per estrarre i valori dalle liste usiamo il pattern matching. Siano `H` e `T` de
 [9,8,7,1,2,3]
 ```
 
+----
 ## Stringhe
 Erlang non mette a disposizione un tipo stringa, le tratta invece come liste di codici carattere (quindi in genere le operazioni eseguibili sulle liste si possono effettuare anche sulle stringhe).
 ```erlang
@@ -281,7 +286,7 @@ Sottrazione tra stringhe
 > "AAaabbcc"--"acbAc".
 "Aab"
 ```
-
+----
 ## Control Sequences
 [Lista completa nella documentazione](https://www.erlang.org/doc/man/io.html#format-2)
 I più usati sono:
@@ -300,7 +305,7 @@ ok
 [99,105,97,111]
 ok
 ```
-
+----
 ## Assegnamento 
 L'operazione di *assegnamento* binda un nome ad un valore. Una volta assegnato, non si può modificare.
 Le "variabili" devono iniziare con una lettera **maiuscola**.
@@ -332,6 +337,7 @@ I binding sono creati mediante pattern matching.
 > Y.
 30
 ```
+----
 ## Funzioni
 Vengono analizzate sequenzialmente fino a che una non effettua il match. 
 ```erlang
@@ -345,6 +351,7 @@ Esempio:
 
 https://github.com/k0dev/erlang-notes/blob/62cfdbaaf968544d02530af28cd4a3564b3eaf74/code/function_example.erl#L1-L8
 
+----
 ## Funzioni anonime (lambda)
 ```erlang
 > (fun(X) -> X*2 end)(10).
@@ -364,7 +371,7 @@ true
 ```
 Esempi:
 - [for loop](code/examples/lambdas/forloop.erl)
-
+----
 ## Function References
 Vengono usati per riferire una funzione definita nel modulo corrente o in
 modulo esterno.
@@ -377,7 +384,7 @@ modulo esterno.
 double_list(L) -> lists:map(fun double/1, L).
 double(X) -> X*2.
 ```
-
+----
 ## Guards
 Una `guard sequence` è una sequenza di `guards`, separate da un punto e virgola (`;`). Una guard sequence è vera (`true`) se **almeno una** delle guard di cui è composta è vera.
 Inoltre, eventuali guard successive a quella valutata true, non vengono valutate.
@@ -392,7 +399,7 @@ Una `guard expression` è un espressione appartenenente ad uno specifico sottoin
 
 Esempi:
 - [massimo in una lista di interi](code/examples/guard/int_list_max.erl)
-
+----
 ## Moduli
 I moduli contengono funzioni, le quali possono essere eseguite sequenzialmente o in parallelo.
 
@@ -405,6 +412,7 @@ La prima riga di un file è un *module declaration*, e il nome del modulo nella 
 ```
 Questo significa che il modulo `mio_modulo` esporta una funzione chiamata `mia_funzione` la quale accetta 3 parametri. Esportare una funzione significa renderla disponibile ad altri moduli. Le funziono non esportate non possono essere chiamate da altri moduli.
 
+----
 ## Macros
 Erlang predefinisce le seguenti macro:
 - `?FILE` nome del file
@@ -418,7 +426,7 @@ Si possono definire nuove macro:
 Esempi:
 - [Custom macro](code/examples/macro/simple_example.erl)
 - [?LINE macro](code/examples/macro/better_debug.erl)
-
+----
 ## Map, Filter, Reduce
 ```erlang
 % utilizzando le funzioni dal modulo lists
@@ -436,7 +444,7 @@ Esempi:
 - [implementazione map, filter, reduce](code/examples/mfr/lists_mfr.erl)
 - [somma degli elementi in una lista](code/examples/mfr/sum.erl)
 - [somma degli elementi in una lista usando foldl](code/examples/mfr/sum_fl.erl)
-
+----
 ## List Comprehension
 [Reference](https://www.erlang.org/doc/reference_manual/expressions.html#list-comprehensions)
 
@@ -478,7 +486,7 @@ Esempi:
 - [quick sort](code/examples/list_comprehension/qsort.erl)
 - [numeri primi <= n](code/examples/list_comprehension/primes.erl)
 - [anagrammi](code/examples/list_comprehension/anagrams.erl)
-
+----
 ## Case e if
 `case` e `if` sono espressioni, quindi **devono** restituire un valore. Se non lo fanno, un eccezione viene lanciata a runtime. Per evitarlo si può definire un *match all* pattern per il case e una *true guard* per l'if.
 ```erlang
@@ -499,7 +507,7 @@ end
 ```
 Esempi:
 - [divisione in pari e dispari](code/examples/case/odd_even.erl)
-
+----
 ## Concorrenza: introduzione
 Erlang mette a disposizione tre funzionalità di base per realizzare la concorrenza:
 - `spawn` la funzione built-in (BIF - built-in function) per creare nuovi actors
@@ -523,6 +531,7 @@ loop(N, Id) -> io:format("(pid: ~p - id: ~p) ~p~n", [self(), Id, N]), loop(N-1, 
 
 La differenza è che nel primo modo eseguiamo due conti alla rovescia in modo sequenziale, nello stesso thread/actor. Nel secondo modo invece creiamo un actor per ogni conto alla rovescia, quindi i conteggi saranno eseguiti in maniera concorrente.
 
+----
 ## Invio di messaggi
 Per poter inviare un messaggio tramite la primitiva `!`, un actor deve conoscere il pid del destinatario. Nel caso in cui sia necessario ricevere una risposta, il mittente deve includere nel messaggio anche il suo pid. La sintassi è la seguente:
 ```
@@ -532,6 +541,7 @@ dove `Exp1` deve identificare l'attore destinatario e `Exp2` può essere qualsia
 
 L'invio non fallisce mai, nemmeno quando il pid specificato non appartiene ad alcun actor. Inoltre l'operazione di send non è bloccante per il mittente.
 
+----
 ## Ricezione di messaggi
 La ricezione dei messaggi avviene mediante pattern matching:
 ```erlang
@@ -560,7 +570,7 @@ Esempi:
 - [conversione temperature](code/examples/message_recv/converter.erl)
 - [calcolo aree](code/examples/message_recv/areas.erl)
 - [adder client-server](code/examples/concurrency/adder_server.erl)
-
+----
 ## Registrare un processo
 Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle BIF per registrare un processo sotto un certo nome. Il nome deve essere un atomo. Quando il processo termina la registrazione viene annullata automaticamente.
 
@@ -571,6 +581,7 @@ Oltre che riferirci ad un processo mediante il suo pid, sono disponibili delle B
 
 Ovviamente una volta assegnato un nome ad un processo è possibile utilizzarlo anche per inviargli un messaggio (`atomo ! messaggio`).
 
+----
 ## BIFs (Built-In Functions)
 Come suggerisce il nome, sono funzioni definite come parte di Erlang. Generalmente
 le BIFs forniscono interfacce verso il sistema operativo o eseguono operazioni che sarebbero
@@ -607,7 +618,7 @@ Tutte le BIFs appartengono al modulo `erlang`, ma la maggior parte sono importat
 
 Esempi:
 - [test benchmark](code/examples/bifs/benchmark.erl)
-
+----
 ## Gestione degli errori
 [Manuale ufficiale](https://www.erlang.org/doc/reference_manual/processes.html#error-handling)
 
@@ -638,6 +649,8 @@ Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e conc
   questo viene trasformato in un messaggio `{'EXIT', Pid, Why}` depositato nella
   sua mailbox. `Pid` si riferisce al processo che è terminato e `Why` contiene
   la ragione di tale terminazione. Se il processo è terminato senza errori, `Why` vale `normal`.
+- ### Monitor
+  I monitor sono simili ai link ma unidirezionali. Supponiamo che il processo P1 stia monitorando P2. Quando P2 termina verrà inviato un messaggio `{'DOWN', MonitorRef, Type, Object, Info}` a P1 (quindi se si usano i monitor non è necessario diventare un system process per gestire gli errori).
 
 Esempi:
 - [link example](code/examples/bifs/link_example.erl)
@@ -645,3 +658,4 @@ Esempi:
 - [propagazione dei segnali di errore nei processi normali](code/examples/concurrency/die_togheter.erl)
 - [propagazione dei segnali di errore con un system process](code/examples/concurrency/firewall.erl)
 - [semplice esempio di system process (trap_exit)](code/examples/concurrency/trap.erl)
+----
