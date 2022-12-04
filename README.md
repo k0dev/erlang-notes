@@ -621,7 +621,7 @@ Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e conc
   [Reference](https://www.erlang.org/doc/reference_manual/processes.html#links)
 
   Se due processi P1 e P2 sono collegati e P1 termina per qualsiasi ragione, viene
-  inviato un segnale di errore a P2 (e viceversa).
+  inviato un segnale di uscita a P2 (e viceversa).
 
   La BIF `link/1` crea un collegamento tra il processo chiamante e quello specificato. Un collegamento è bidirezionale e tra ogni coppia di processi ne può esistere al massimo uno.
 
@@ -630,11 +630,11 @@ Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e conc
   ad esso collegati (l'insieme dei processi collegati a P si definisce linkset).
 - ### Processi normali
   Sono i processi creati con la BIF `spawn`. Quando un processo normale riceve
-  un segnale di errore da parte di un processo che è terminato con un anomalia, 
-  esso terminerà a sua volta (se il segnale di errore è una terminazione normale,
+  un segnale di uscita da parte di un processo che è terminato con un anomalia, 
+  esso terminerà a sua volta (se il segnale di uscita è una terminazione normale,
   allora non termina).
 - ### Processi di sistema
-  Un processo normale diventa un processo di sistema dopo la chiamata `process_flag(trap_exit, true)`. Quando un processo di sistema riceve un segnale di errore,
+  Un processo normale diventa un processo di sistema dopo la chiamata `process_flag(trap_exit, true)`. Quando un processo di sistema riceve un segnale di uscita,
   questo viene trasformato in un messaggio `{'EXIT', Pid, Why}` depositato nella
   sua mailbox. `Pid` si riferisce al processo che è terminato e `Why` contiene
   la ragione di tale terminazione. Se il processo è terminato senza errori, `Why` vale `normal`.
