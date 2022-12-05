@@ -654,6 +654,7 @@ Per realizzare tutto questo Erlang mette a disposizione diversi strumenti e conc
 
 Esempi:
 - [link example](code/examples/bifs/link_example.erl)
+- [monitor example](code/examples/concurrency/onexit.erl)
 - [utilizzo di exit/2](code/examples/concurrency/killer.erl)
 - [propagazione dei segnali di errore nei processi normali](code/examples/concurrency/die_togheter.erl)
 - [propagazione dei segnali di errore con un system process](code/examples/concurrency/firewall.erl)
