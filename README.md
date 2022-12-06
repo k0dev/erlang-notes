@@ -10,6 +10,7 @@
 - [Esercizio 5 - Counting Calls](code/lab/lab01/ex5/counting.erl)
 </details>
 
+### [Advent of Code in Erlang](https://github.com/k0dev/aoc2022)
 ----
 ## Indice
 - [Shell cheat sheet](#shell-cheat-sheet)
@@ -33,7 +34,7 @@
 - [Concorrenza: introduzione](#concorrenza-introduzione)
 - [Invio di messaggi](#invio-di-messaggi)
 - [Ricezione di messaggi](#ricezione-di-messaggi)
-- [Registrare un processo](#actors-registrati)
+- [Registrare un processo](#registrare-un-processo)
 - [BIFs (Built-In Functions)](#bifs-built-in-functions)
 - [Gestione degli errori](#gestione-degli-errori)
   - [Link](#link)
