@@ -10,7 +10,6 @@
 - [Esercizio 5 - Counting Calls](code/lab/lab01/ex5/counting.erl)
 </details>
 
-### [Advent of Code in Erlang](https://github.com/k0dev/aoc2022)
 ----
 ## Indice
 - [Shell cheat sheet](#shell-cheat-sheet)
