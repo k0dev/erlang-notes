@@ -1,4 +1,4 @@
-# Erlang :(
+# Erlang :)
 
 <details>
 <summary><b>Lab01</b></summary>
